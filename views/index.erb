@@ -1,0 +1,50 @@
+<div class="heading">
+    <div="col-md-12">
+        <h1>Team Randomizer</h1>
+</div>
+</div>
+
+<div class="row">
+    <form action="/" method="POST">
+        <div class="col-md-12">
+            <label>Enter some names</label>
+            <input type="text" name="names">
+        </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>What would you like to sort by?</label>
+        <br/>
+        <input type="radio" name="sort_choice" id="Number of people per team" value="num_of_pp_team">
+        <label for="Number of people per team">Number of people per team</label>
+        <br/>
+        <input type="radio" name="sort_choice" id="Number of teams" value="num_of_teams">
+        <label for="Number of teams">Number of teams</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>Enter a number </label>
+        <input type="text" name="num">
+    </div>
+    <div class="submit-button">
+        <input class="btn btn-primary" type="submit">
+    </div>
+</div>
+
+</form>
+
+<% unless @twoArray.nil? %>
+    <div class="isa_success">
+        <i class="fa fa-check"></i> Success! The teams are:
+    </div>
+    <% @twoArray.each do |i| %>
+        <h3> Team: <%= @twoArray.index(i)+1  %> </h3>
+        <% i.each do |j| %>
+            <%=j %>,
+                <% end %>
+                    <br>
+                    <% end %>
+                        <% end %>

@@ -1,8 +1,4 @@
 
-###WRITE ERROR TESTS - e.g. if user enters random letters/numbers inseatd of names etc.
-#add an 'else' @error_message to method?
-## And use Ruby rand instead of own rand method
-
 require 'sinatra'
 require 'sinatra/reloader'
 
@@ -13,15 +9,23 @@ get '/' do
    erb :index, layout: :template
 end
 
-
-
 post "/" do
   @names = params[:names]
   session[:array] = @names.split(",")
   @num = params[:num].to_i
   @sort_choice = params[:sort_choice]
 
-  # if the number of teams is bigger than the number of members
+  #Error-checking
+  #If user input is not a string
+  unless params[:names].is_a?(String)&& params[:names].include?(",")
+      @error_message = "Error! Your names input is invalid!"
+  end
+  unless @num.is_a?(String)|| @num.is_a?(Integer)
+    @error_message = "Error! Your number input is invalid!"
+  end
+
+# Error-checking
+# if the number of teams is bigger than the number of members
   if @num > session[:array].length
     if @sort_choice == "num_of_teams"
       @error_message = "Error! The number of teams is bigger than the number of persons!"
